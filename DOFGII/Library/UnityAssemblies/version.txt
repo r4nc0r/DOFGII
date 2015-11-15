@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 5.2.1f1:2.1.0.0
+=======
+5.2.2f1:2.1.0.0
+>>>>>>> origin/r4nc0r_Enemy
 StandaloneWindows
 C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll
 C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll
