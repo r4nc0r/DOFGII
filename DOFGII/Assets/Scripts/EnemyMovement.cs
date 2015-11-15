@@ -7,7 +7,9 @@ public class EnemyMovement : MonoBehaviour {
 	GameObject enemy;
 	float distance;
 	public int shootDistance = 100;
-
+    public GameObject shot;
+    public float fireRate;
+    public float NextShot;
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
@@ -19,9 +21,12 @@ public class EnemyMovement : MonoBehaviour {
 	void Shoot()
 	{
 		Debug.Log (this.gameObject+" :Shoot");
-//		NextShot = Time.time + fireRate;
-//		shotPosition = new Vector3(enemy.position.x,enemy.position.y+3,enemy.position.z);
-//		Instantiate(shot, shotPosition, enemy.rotation);
+        //shotPosition = new Vector3(enemy.position.x,enemy.position.y+3,enemy.position.z);
+        if ( NextShot <= Time.time)
+        {
+            NextShot = Time.time + fireRate;
+            Instantiate(shot, enemy.transform.position, enemy.transform.rotation);
+        }
 	}
 	
 	// Update is called once per frame

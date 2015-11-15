@@ -45,7 +45,7 @@ public class WeaponBeamController : MonoBehaviour {
         // Collider related Game Logic:
         bool hitting = Physics.Raycast(transform.position, transform.forward, out hit, Range);
 
-        if (hitting && hit.collider.gameObject.CompareTag("Pick Up"))
+        if (hitting && hit.collider.gameObject.CompareTag("Enemy"))
         {
             Destroy(hit.collider.gameObject);
         }
