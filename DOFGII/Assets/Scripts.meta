@@ -1,7 +1,13 @@
 fileFormatVersion: 2
-guid: 7b0ca674c4432c04cb52df6df4256b77
+<<<<<<< HEAD
+guid: 10a22cb23e252d84ea8fa27cea5984b4
 folderAsset: yes
-timeCreated: 1447590235
+timeCreated: 1447591165
+=======
+guid: ab24730231a6271499a6a43395ae371e
+folderAsset: yes
+timeCreated: 1447591217
+>>>>>>> refs/remotes/origin/DofGII_Player
 licenseType: Free
 DefaultImporter:
   userData: 

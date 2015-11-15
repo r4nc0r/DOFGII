@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
+		Debug.Log (player);
 		enemy = this.gameObject;
 		nav = GetComponent<NavMeshAgent> ();
 	}

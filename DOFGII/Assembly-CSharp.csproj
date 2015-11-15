@@ -45,8 +45,16 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BondaryController.cs" />
+     <Compile Include="Assets\Scripts\BonusItemHandler.cs" />
+     <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\EnemyMovement.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\GoldCoinHandler.cs" />
+     <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
+     <Compile Include="Assets\Scripts\WeaponBeamController.cs" />
+     <Compile Include="Assets\Scripts\WeaponBoltMover.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
