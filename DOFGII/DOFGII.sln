@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
 Project("{2AE4AEB1-E269-3E10-37D1-0B9862ED6698}") = "DOFGII", "Assembly-CSharp.csproj", "{9352F41E-306E-DD7D-C91C-291BD03074B6}"
+=======
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DOFGII.CSharp", "DOFGII.CSharp.csproj", "{3C0C24F8-EC1C-19A0-641B-591AF1D08629}"
+>>>>>>> refs/remotes/origin/DofGII_Player
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,14 +16,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+<<<<<<< HEAD
 		{9352F41E-306E-DD7D-C91C-291BD03074B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9352F41E-306E-DD7D-C91C-291BD03074B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9352F41E-306E-DD7D-C91C-291BD03074B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9352F41E-306E-DD7D-C91C-291BD03074B6}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{3C0C24F8-EC1C-19A0-641B-591AF1D08629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C0C24F8-EC1C-19A0-641B-591AF1D08629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C0C24F8-EC1C-19A0-641B-591AF1D08629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C0C24F8-EC1C-19A0-641B-591AF1D08629}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> refs/remotes/origin/DofGII_Player
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+<<<<<<< HEAD
 																								GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
@@ -37,4 +52,6 @@ Global
 		$3.scope = text/plain
 	EndGlobalSection
 
+=======
+>>>>>>> refs/remotes/origin/DofGII_Player
 EndGlobal
