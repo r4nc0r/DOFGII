@@ -19,7 +19,7 @@ public class BonusItemHandler : MonoBehaviour
     /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == player.tag || other.tag == "Bolt")
+        if (other.tag == player.tag )
         {
             Destroy(gameObject);
             if (Random.Range(0, 100) <= 1)
@@ -30,7 +30,7 @@ public class BonusItemHandler : MonoBehaviour
             }
             else
             {
-                bonusItemIndex = 1;
+                bonusItemIndex = 0;
                 yAxisAdd.y = 0;
                 rotation = transform.rotation;
             }
