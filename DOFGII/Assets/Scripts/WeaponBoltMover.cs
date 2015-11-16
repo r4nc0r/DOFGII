@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class WeaponBoltMover : MonoBehaviour
 {
     public float Speed;
     public float Spread;
+
 
     void Start()
     {
@@ -19,8 +21,9 @@ public class WeaponBoltMover : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             Destroy(other.gameObject);
-
+            GameController.SetCounter(1);
             Destroy(this.gameObject);
+            
         }
     }
     void OnTriggerExit(Collider other)

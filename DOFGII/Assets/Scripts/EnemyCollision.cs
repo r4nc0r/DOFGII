@@ -52,6 +52,7 @@ public class EnemyCollision : MonoBehaviour {
     if (playerHealth.CurrentHealth > 0)
     {
       playerHealth.TakeDamage(attackDamage);
+      showPoints();
     }
   }
     void spawnBonus()

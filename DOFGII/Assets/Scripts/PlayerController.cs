@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,10 +15,29 @@ public class PlayerController : MonoBehaviour
     public Transform shotSpawn;
     public float fireRate;
     public float NextShot;
+
+    public Image WeaponImage;
+
+    private Weapon currentWeapon;
     void Start()
     {
+        
+
         // Initialize Game Logic variables:
         playerRigidbody = GetComponent<Rigidbody>();
+        currentWeapon = Inventory.CurrentWeapon;
+        if (currentWeapon != null)
+        {
+            WeaponImage.sprite = currentWeapon.WeaponSprite;
+        }
+        else
+        {
+            currentWeapon = new Weapon();
+            currentWeapon.FireRate = 1;
+            currentWeapon.ProjectileSpeed = 10;
+            currentWeapon.Spread = 0;
+        }
+        fireRate = (float)currentWeapon.FireRate;
     }
     void Update()
     {
@@ -57,7 +77,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Fire1") && NextShot <= Time.time)
         {
             NextShot = Time.time + fireRate;
-            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            GameObject newShot = Instantiate(shot, shotSpawn.position, shotSpawn.rotation) as GameObject;
+            newShot.GetComponent<WeaponBoltMover>().Speed = (float) currentWeapon.ProjectileSpeed;
+            newShot.GetComponent<WeaponBoltMover>().Spread = (float)currentWeapon.Spread;
         }
     }
     /// <summary>

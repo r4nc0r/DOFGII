@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 	public GameObject Enemy1;
@@ -20,6 +21,9 @@ public class GameController : MonoBehaviour {
 	public GameObject Boundary;
 	public GameObject Player;
 	float distance;
+
+    private static int counter;
+    public  Text Points;
 
 
 	/// <summary>
@@ -46,6 +50,11 @@ public class GameController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        Points.text = counter.ToString();
+        if (counter >=2) 
+        {
+            Application.LoadLevel("Shop");
+        }
 //		if (GameObject.FindGameObjectsWithTag ("Enemy").Length < Enemy1Count) {
 //			SpawnEnemy (Enemy1, Enemy1Count,0, 90);
 //		}
@@ -61,4 +70,10 @@ public class GameController : MonoBehaviour {
 		spawnPointTemp.z = Mathf.Sin (Mathf.Deg2Rad*i) * (distance / 2);
 		Instantiate(enemy, spawnPointTemp , Quaternion.identity);
 	}
+
+    public static void SetCounter(int value)
+    {
+        counter+=value;
+        
+    }
 }
