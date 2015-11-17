@@ -37,7 +37,7 @@ public class EnemyMovement : MonoBehaviour {
 		}
 		else if (distance  <= shootDistance) {
 			nav.SetDestination (player.transform.position);
-			Shoot();
+		    Shoot();
 
 		} 
 		else {

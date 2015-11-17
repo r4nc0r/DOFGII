@@ -2,66 +2,40 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class EnemyCollision : MonoBehaviour {
+public class EnemyCollision : MonoBehaviour
+{
 
-  public int attackDamage = 50;
-  GameObject Player;
-  PlayerHealth playerHealth;
-  private bool playerInRange;
-  private int counter;
-  public Text Points;
-  public GameObject BonusItem;
+    public int attackDamage = 50;
+    GameObject Player;
+    PlayerHealth playerHealth;
+    private bool playerInRange;
+    
 
-  void Start()
-  {
-    counter=0;
-  }
-  void Awake()
-  {
-   
-    Player = GameObject.FindGameObjectWithTag("Player");
-    playerHealth = Player.GetComponent<PlayerHealth>();
-    //bonusItem = GameObject.FindGameObjectWithTag("BonusItem");  
-  }
-  void OnTriggerEnter(Collider other)
-  {
-    if (other.tag == Player.tag)
+    void Start()
     {
-      counter++;
-      playerInRange = true;
+    
     }
-    else if (other.tag == "Bolt")
+    void Awake()
     {
-      counter++;
-      Destroy(other.gameObject);
-      Destroy(gameObject);
+        Player = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = Player.GetComponent<PlayerHealth>();
     }
-  }
-  void Update()
-  { 
-    if (playerInRange)
+    void OnTriggerEnter(Collider other)
     {
-      playerInRange = false;
-      Attack();
-      Destroy(this.gameObject);
-            spawnBonus();
+        if (other.tag == Player.tag)
+        {
+            playerInRange = true;
+            Attack();
+        }
     }
-  }
-  void Attack()
-  {
-    if (playerHealth.CurrentHealth > 0)
+
+    void Attack()
     {
-      playerHealth.TakeDamage(attackDamage);
-      showPoints();
+        if (playerHealth.CurrentHealth > 0)
+        {
+            playerHealth.TakeDamage(attackDamage);
+            Destroy(this.gameObject);
+        }
     }
-  }
-    void spawnBonus()
-    {
-        Instantiate(BonusItem, this.transform.position, Quaternion.identity);
-    }
-  void showPoints()
-  {
-        Points.text = "Points" + counter.ToString();
-  }
 }
 

@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour {
 	void Awake()
 	{
 		distance = 50;//Vector3.Distance (Player.transform.position, Boundary.transform.position);
-		Enemy1Count = 15;
+
 	}
 
 	// Use this for initialization
@@ -67,6 +67,7 @@ public class GameController : MonoBehaviour {
 	{
 		int i = Random.Range(offset,offset+width);
 		spawnPointTemp.x = Mathf.Cos (Mathf.Deg2Rad*i) * (distance / 2);
+        spawnPointTemp.y = 1;
 		spawnPointTemp.z = Mathf.Sin (Mathf.Deg2Rad*i) * (distance / 2);
 		Instantiate(enemy, spawnPointTemp , Quaternion.identity);
 	}
