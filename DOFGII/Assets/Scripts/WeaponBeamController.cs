@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WeaponBeamController : MonoBehaviour {
+public class WeaponBeamController : MonoBehaviour
+{
     // Variables for GameLogic and Renderer: 
     RaycastHit hit;
 
     LineRenderer LineRender;
 
+    public GameObject Shooter;
+
+    string TargetTag;
+
     float spawntime;
 
     // Balancing Variables:
-    public float DamagePerSecond;
+    public int DamagePerSecond;
 
     public float FiringTime;
 
@@ -22,13 +27,13 @@ public class WeaponBeamController : MonoBehaviour {
     {
         // Initialization Values:
         spawntime = Time.time;
-
+        
         LineRender = GetComponent<LineRenderer>();
 
         // add Beam to Hierarchy:
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        Transform Spawnpoint = player.transform.FindChild("ShotSpawn");
+
+        Transform Spawnpoint = Shooter.transform.FindChild("ShotSpawn");
 
         this.transform.parent = Spawnpoint;
     }
@@ -45,11 +50,14 @@ public class WeaponBeamController : MonoBehaviour {
         // Collider related Game Logic:
         bool hitting = Physics.Raycast(transform.position, transform.forward, out hit, Range);
 
-        if (hitting && hit.collider.gameObject.CompareTag("Enemy"))
+        if (hitting && hit.collider.CompareTag("Enemy"))
         {
-            Destroy(hit.collider.gameObject);
+            hit.collider.GetComponent<EnemyMovement>().DestroyedByPlayer();
         }
-
+        else if (hitting && hit.collider.CompareTag("Player"))
+        {
+            hit.collider.GetComponent<PlayerHealth>().TakeDamage(DamagePerSecond);
+        }
         // Setting positions for next rendering call:
         LineRender.SetPosition(0, transform.position - transform.forward);
         if (hitting)

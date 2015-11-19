@@ -5,45 +5,57 @@ public class EnemyMovement : MonoBehaviour {
 	NavMeshAgent nav;
 	GameObject player;
 	GameObject enemy;
+
 	float distance;
 	public int shootDistance = 100;
-    public GameObject shot;
-    public float fireRate;
-    public float NextShot;
+
+    BonusController bonusController;
+    public int HighscorePoints;
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
-		Debug.Log (player);
-		enemy = this.gameObject;
-		nav = GetComponent<NavMeshAgent> ();
-	}
 
-	void Shoot()
-	{
-		Debug.Log (this.gameObject+" :Shoot");
-        //shotPosition = new Vector3(enemy.position.x,enemy.position.y+3,enemy.position.z);
-        if ( NextShot <= Time.time)
-        {
-            NextShot = Time.time + fireRate;
-            Instantiate(shot, enemy.transform.position, enemy.transform.rotation);
-        }
+        bonusController = GameObject.FindGameObjectWithTag("BonusController").GetComponent<BonusController>();
+
+        Debug.Log (player);
+
+		enemy = this.gameObject;
+
+		nav = GetComponent<NavMeshAgent> ();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		double distance = Vector3.Distance(player.transform.position,enemy.transform.position);
-		if (distance > shootDistance) {
-			nav.SetDestination (player.transform.position);
-		}
-		else if (distance  <= shootDistance) {
-			nav.SetDestination (player.transform.position);
-		    Shoot();
+        if (distance > shootDistance)
+        {
+            nav.SetDestination(player.transform.position);
+        }
+        else if (distance <= shootDistance)
+        {
+            nav.SetDestination(player.transform.position);
+            if(this.GetComponent<EnemyShotController>() != null)
+            {
+                this.GetComponent<EnemyShotController>().enabled = true;
+            }
+        }
+        else
+        {
 
-		} 
-		else {
-
-		}
+        }
 
 		nav.SetDestination(player.transform.position);
 	}
+
+    public void DestroyedByPlayer()
+    {
+        GameController.SetCounter(HighscorePoints);
+
+        bonusController.showPoints();
+
+        bonusController.spawnBonus(this.transform.position);
+
+        Destroy(this.gameObject);
+    }
 }

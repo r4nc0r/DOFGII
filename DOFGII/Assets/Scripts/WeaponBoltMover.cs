@@ -6,29 +6,47 @@ using UnityEngine.UI;
 public class WeaponBoltMover : MonoBehaviour
 {
     public float Speed;
+
     public float Spread;
-    BonusController bonusController; 
+
+    public string TargetTag;
+
+    public int Damage;
+
+    GameObject Player;
 
     void Start()
     {
-        bonusController = GameObject.FindGameObjectWithTag("BonusController").GetComponent<BonusController>();
+        // Initial Values:
         Rigidbody BoltRigidBody = GetComponent<Rigidbody>();
+
         Vector3 boltSpread = Random.insideUnitSphere * Spread;
+
         boltSpread.y = 0.0f;
+
         BoltRigidBody.velocity = (transform.forward + boltSpread) * Speed;
+
+        //Damage = 1;
+
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        // Differentiate hitted Gameobject:
+        if (other.gameObject.CompareTag("Enemy") && TargetTag == "Enemy")
         {
-            bonusController.showPoints();
-            bonusController.spawnBonus(this.transform.position);
+            other.GetComponent<EnemyMovement>().DestroyedByPlayer();
 
-            Destroy(other.gameObject);
-            //GameController.SetCounter(1);
             Destroy(this.gameObject);
         }
+        else if (other.CompareTag("Player") && TargetTag == "Player")
+        {
+            Player.GetComponent<PlayerHealth>().TakeDamage(Damage);
+
+            Destroy(this.gameObject);
+        }
+                
     }
     void OnTriggerExit(Collider other)
     {

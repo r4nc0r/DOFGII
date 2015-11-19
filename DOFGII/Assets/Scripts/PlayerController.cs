@@ -15,14 +15,11 @@ public class PlayerController : MonoBehaviour
     public Transform shotSpawn;
     public float fireRate;
     public float NextShot;
-
     public Image WeaponImage;
 
     private Weapon currentWeapon;
     void Start()
     {
-        
-
         // Initialize Game Logic variables:
         playerRigidbody = GetComponent<Rigidbody>();
         currentWeapon = Inventory.CurrentWeapon;
@@ -34,7 +31,7 @@ public class PlayerController : MonoBehaviour
         {
             currentWeapon = new Weapon();
             currentWeapon.FireRate = 1;
-            currentWeapon.ProjectileSpeed = 10;
+            currentWeapon.ProjectileSpeed = 22;
             currentWeapon.Spread = 0;
         }
         fireRate = (float)currentWeapon.FireRate;
@@ -69,17 +66,24 @@ public class PlayerController : MonoBehaviour
         playerRigidbody.velocity = Strave + Forward;
     }
     /// <summary>
-    /// Controlls firing of current equipped Weapon
+    /// Controlls firing of currently equipped Weapon
     /// </summary>
     void fireWeapon()
     {
-        // Check for Weapon Activation and Execute if True:
+        // Check for Weapon Activation and activate Weapon if True:
         if (Input.GetButton("Fire1") && NextShot <= Time.time)
         {
+            // Initialize Shot:
             NextShot = Time.time + fireRate;
+
             GameObject newShot = Instantiate(shot, shotSpawn.position, shotSpawn.rotation) as GameObject;
+
+            // Overload Shot values:
             newShot.GetComponent<WeaponBoltMover>().Speed = (float) currentWeapon.ProjectileSpeed;
+
             newShot.GetComponent<WeaponBoltMover>().Spread = (float)currentWeapon.Spread;
+
+            newShot.GetComponent<WeaponBoltMover>().TargetTag = "Enemy";
         }
     }
     /// <summary>
@@ -88,10 +92,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
-        //if (other.gameObject.CompareTag("Pick Up"))
-        //{
-        //    Destroy(other.gameObject);
-        //}
+        
     }
 }
 
