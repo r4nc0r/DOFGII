@@ -1,28 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CoinScript : MonoBehaviour
-{
-    GameObject Player;
-    //PlayerController playerController;
+public class GoldCoinHandler : MonoBehaviour {
 
-    void Start()
-    {
-        Player = GameObject.FindGameObjectWithTag("Player");
-        //playerController = Player.GetComponent<PlayerController>();
+    BonusController bonusController;
 
-    }
     void Awake()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
-        //playerController = Player.GetComponent<PlayerController>();
+        bonusController = GameObject.FindGameObjectWithTag("BonusController").GetComponent<BonusController>();
+    }
+    void Update()
+    {
+        transform.Rotate(new Vector3(0, 0, 45) * Time.deltaTime);
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == Player.tag)
+        if (other.tag == "Player")
         {
-            //playerController.Money++;
-            //playerController.SetMoneyText();
+            bonusController.showMoney();
             Destroy(gameObject);
         }
     }

@@ -4,28 +4,32 @@ using System.Collections;
 
 public class BonusController : MonoBehaviour {
 
+    private PlayerController playercontroller;
     public GameObject BonusItem;
-    private int counter = 0;
+    private int pointCounter = 0;
     public Text PointText;
-    // Use this for initialization
-    void Start()
+    private int moneyCount = 0;
+    public Text MoneyText;
+
+    public void Start()
     {
-
+        playercontroller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    //public int Money { get { return moneyCount; } }
     public void spawnBonus(Vector3 spawnPosition)
     {
-        Instantiate(BonusItem, spawnPosition, Quaternion.identity);
+        Instantiate(BonusItem, spawnPosition+ new Vector3(0,1,0), Quaternion.identity);
     }
     public void showPoints()
     {
-        counter++;
-        PointText.text = "Points" + counter.ToString();
+        pointCounter++;
+        PointText.text = "Points " + pointCounter.ToString();
+        playercontroller.PlayerPoints = pointCounter;
+    }
+    public void showMoney()
+    {
+        moneyCount++;
+        MoneyText.text = "Money " + moneyCount.ToString();
+        playercontroller.PlayerMoney = moneyCount;
     }
 }

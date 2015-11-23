@@ -22,8 +22,9 @@ public class GameController : MonoBehaviour {
 	public GameObject Player;
 	float distance;
 
+    PlayerController playercontroller;
     private static int counter;
-    public  Text Points;
+    
 
 
 	/// <summary>
@@ -31,6 +32,7 @@ public class GameController : MonoBehaviour {
 	/// </summary>
 	void Awake()
 	{
+        playercontroller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 		distance = 50;//Vector3.Distance (Player.transform.position, Boundary.transform.position);
 
 	}
@@ -50,14 +52,10 @@ public class GameController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        Points.text = counter.ToString();
-        if (counter >=2) 
+        if (playercontroller.PlayerPoints>=15)
         {
             Application.LoadLevel("Shop");
         }
-//		if (GameObject.FindGameObjectsWithTag ("Enemy").Length < Enemy1Count) {
-//			SpawnEnemy (Enemy1, Enemy1Count,0, 90);
-//		}
 	}
 	Vector3 spawnPointTemp;
 	/// <summary>
