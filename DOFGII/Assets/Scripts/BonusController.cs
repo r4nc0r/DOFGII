@@ -5,6 +5,7 @@ using System.Collections;
 public class BonusController : MonoBehaviour {
 
     private PlayerController playercontroller;
+    private PlayerHealth playerhealth;
     public GameObject BonusItem;
     private int pointCounter = 0;
     public Text PointText;
@@ -14,11 +15,15 @@ public class BonusController : MonoBehaviour {
     public void Start()
     {
         playercontroller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        playerhealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
     }
     //public int Money { get { return moneyCount; } }
     public void spawnBonus(Vector3 spawnPosition)
     {
-        Instantiate(BonusItem, spawnPosition+ new Vector3(0,1,0), Quaternion.identity);
+        if ((int)Random.Range(0, 100) % 2 == 0)
+        {
+            Instantiate(BonusItem, spawnPosition + new Vector3(0, 1, 0), Quaternion.identity);
+        }
     }
     public void showPoints()
     {
@@ -31,5 +36,9 @@ public class BonusController : MonoBehaviour {
         moneyCount++;
         MoneyText.text = "Money " + moneyCount.ToString();
         playercontroller.PlayerMoney = moneyCount;
+    }
+    public void addHealth(int healing)
+    {
+        playerhealth.GetHealing(500);
     }
 }

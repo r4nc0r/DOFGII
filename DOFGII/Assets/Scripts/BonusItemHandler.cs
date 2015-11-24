@@ -31,30 +31,40 @@ public class BonusItemHandler : MonoBehaviour
                 Destroy(other);
 
             badCount = ((int)Random.Range(1, 4));
+
             randomVar = Random.Range(0, 101);
+
             rotation = transform.rotation;
+
             Destroy(gameObject);
-            if (randomVar >= 0 && randomVar <= 25)
+
+            if (randomVar >= 00 && randomVar <= 20)
             {
                 //Enemy 1
                 bonusItemIndex = 0;
                 rotation = Quaternion.AngleAxis(180, new Vector3(1, 0, 0));
             }
-            else if(randomVar >= 25 && randomVar <= 50)
+            else if(randomVar >= 20 && randomVar <= 40)
             {
                 //Enemy 2
                 bonusItemIndex = 1;
             }
-            else if (randomVar >= 50  && randomVar <= 75)
+            else if (randomVar >= 40  && randomVar <= 60)
             {
                 //Enemy 3
                 bonusItemIndex = 2;
             }
-            else if (randomVar >= 75 && randomVar <= 100)
+            else if (randomVar >= 60 && randomVar <= 85)
             {
                 //Coin
                 badCount = 1;
                 bonusItemIndex = 3;
+            }
+            else if (randomVar >= 85 && randomVar <= 100)
+            {
+                //Coin
+                badCount = 1;
+                bonusItemIndex = 4;
             }
 
             for (int i = 0; i < badCount; i++)

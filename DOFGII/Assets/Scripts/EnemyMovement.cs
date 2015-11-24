@@ -50,7 +50,7 @@ public class EnemyMovement : MonoBehaviour {
 
     public void DestroyedByPlayer()
     {
-        GameController.SetCounter(HighscorePoints);
+        //GameController.SetCounter(HighscorePoints);
 
         bonusController.showPoints();
 

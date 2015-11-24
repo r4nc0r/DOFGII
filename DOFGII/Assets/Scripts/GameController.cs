@@ -3,17 +3,17 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
-	public GameObject Enemy1;
+	//public GameObject Enemy1;
 	public int Enemy1Count;
 	public int Enemy1OriginBegin;
 	public int Enemy1OriginWidth;
 
-	public GameObject Enemy2;
+	//public GameObject Enemy2;
 	public int Enemy2Count;
 	public int Enemy2OriginBegin;
 	public int Enemy2OriginWidth;
 
-	public GameObject Enemy3;
+	//public GameObject Enemy3;
 	public int Enemy3Count;
 	public int Enemy3OriginBegin;
 	public int Enemy3OriginWidth;
@@ -23,9 +23,7 @@ public class GameController : MonoBehaviour {
 	float distance;
 
     PlayerController playercontroller;
-    private static int counter;
-    
-
+    public GameObject[] EnemyArray;
 
 	/// <summary>
 	/// Awake this instance.
@@ -33,28 +31,33 @@ public class GameController : MonoBehaviour {
 	void Awake()
 	{
         playercontroller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-		distance = 50;//Vector3.Distance (Player.transform.position, Boundary.transform.position);
-
+        //distance = 50;//Vector3.Distance (Player.transform.position, Boundary.transform.position);
+        distance = Boundary.transform.localScale.x;
 	}
 
 	// Use this for initialization
 	void Start () {
-		for (int i = 0; i < Enemy1Count; i++) {
-			SpawnEnemy(Enemy1, Enemy1Count, Enemy1OriginBegin,Enemy1OriginWidth);
+        for (int i = 0; i < Enemy1Count; i++) {
+            SpawnEnemy(EnemyArray[0], Enemy1Count, Enemy1OriginBegin,Enemy1OriginWidth);
 		}
 		for (int i = 0; i < Enemy2Count; i++) {
-			SpawnEnemy(Enemy2, Enemy2Count, Enemy2OriginBegin,Enemy2OriginWidth);
+			SpawnEnemy(EnemyArray[1], Enemy2Count, Enemy2OriginBegin,Enemy2OriginWidth);
 		}
 		for (int i = 0; i < Enemy3Count; i++) {
-			SpawnEnemy(Enemy3, Enemy3Count, Enemy3OriginBegin,Enemy3OriginWidth);
+			SpawnEnemy(EnemyArray[2], Enemy3Count, Enemy3OriginBegin,Enemy3OriginWidth);
 		}
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         if (playercontroller.PlayerPoints>=15)
         {
             Application.LoadLevel("Shop");
+        }
+        if(GameObject.FindGameObjectsWithTag("Enemy").Length<5)
+        {
+            SpawnEnemy(EnemyArray[(int) Random.Range(0,3)], Enemy1Count, Enemy1OriginBegin, Enemy1OriginWidth);
         }
 	}
 	Vector3 spawnPointTemp;
@@ -69,10 +72,4 @@ public class GameController : MonoBehaviour {
 		spawnPointTemp.z = Mathf.Sin (Mathf.Deg2Rad*i) * (distance / 2);
 		Instantiate(enemy, spawnPointTemp , Quaternion.identity);
 	}
-
-    public static void SetCounter(int value)
-    {
-        counter+=value;
-        
-    }
 }

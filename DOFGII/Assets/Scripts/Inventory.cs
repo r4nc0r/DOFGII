@@ -26,7 +26,6 @@ public class Inventory : MonoBehaviour {
     {
      
     }
-
    
     //Update is called once per frame
     void Update()
@@ -69,7 +68,7 @@ public class Inventory : MonoBehaviour {
         {
             CurrentWeapon = weapons[0];
         }
-        GameController.SetCounter(-5);
+        //GameController.SetCounter(-5);
         Application.LoadLevel("Main");
     }
 
