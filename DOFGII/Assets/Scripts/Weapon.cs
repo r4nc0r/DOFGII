@@ -10,7 +10,7 @@ public class Weapon
     public double FireRate;
     public double ProjectileSpeed;
     public double Spread;
-
+    public GameObject Bolt;
 }
 
    

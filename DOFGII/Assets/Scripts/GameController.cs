@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour {
     PlayerController playercontroller;
     public GameObject[] EnemyArray;
     private static int level;
-    private const int levelPoints = 10;
+    private const int levelPoints = 3;
     public Text LevelText;
 
 	/// <summary>

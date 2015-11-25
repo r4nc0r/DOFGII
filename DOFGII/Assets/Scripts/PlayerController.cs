@@ -22,10 +22,12 @@ public class PlayerController : MonoBehaviour
     {
         // Initialize Game Logic variables:
         playerRigidbody = GetComponent<Rigidbody>();
-        currentWeapon = Inventory.CurrentWeapon;
+        currentWeapon = SceneBuffer.PlayerWeapon;
+
         if (currentWeapon != null)
         {
             WeaponImage.sprite = currentWeapon.WeaponSprite;
+            shot = currentWeapon.Bolt;
         }
         else
         {
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
             currentWeapon.FireRate = 1;
             currentWeapon.ProjectileSpeed = 22;
             currentWeapon.Spread = 0;
+            currentWeapon.Bolt = shot;
         }
         fireRate = (float)currentWeapon.FireRate;
     }

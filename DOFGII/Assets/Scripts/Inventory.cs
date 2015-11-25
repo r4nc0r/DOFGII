@@ -8,27 +8,37 @@ public class Inventory : MonoBehaviour {
 
     public  Weapon[] weapons = new Weapon[3];
 
-    public static Weapon CurrentWeapon;
-
     public Image SelectedImage;
+    public Image PlayerCurrentWeaponImage;
     public Text WeaponName;
     public Text WeaponPreis;
+    public Text PlayerMoney;
+    public Text PlayerPoints;
+
     private int position = 0;
-    private GameObject player;
-    private PlayerController pc;
     private int playerMoney;
     private int playerPoints;
-
-    // Use this for initialization
-    void Start()
-    {
-       
-    }
+    private const int factor = 2;
+    private Weapon CurrentWeapon;
 
     void Awake()
     {
-        playerMoney = SceneBuffer.PlayerMoney;
+        playerMoney = SceneBuffer.PlayerMoney*factor;
         playerPoints = SceneBuffer.PlayerPoints;
+
+        if (SceneBuffer.PlayerWeapon == null)
+        {
+            CurrentWeapon = weapons[0];
+        }
+        else
+        {
+            CurrentWeapon = SceneBuffer.PlayerWeapon;
+        }
+        
+        PlayerCurrentWeaponImage.sprite = CurrentWeapon.WeaponSprite;
+        PlayerMoney.text = "Money: " + playerMoney;
+        PlayerPoints.text = "Points: " + playerPoints;
+
     }
    
     //Update is called once per frame
@@ -41,16 +51,13 @@ public class Inventory : MonoBehaviour {
         int weaponPrice = Convert.ToInt32(weapons[position].Price);
         if (playerMoney >= weaponPrice)
         {
-            CurrentWeapon = weapons[position];
-            playerMoney -= weaponPrice;
+
+            playerMoney = (playerMoney - weaponPrice) / factor;
             BackToMiniGame();
         }
         else
         {
-            if (UnityEditor.EditorUtility.DisplayDialog("Weapon Shop", "Not enough money!!!", "OK"))
-            {
-            }
-            
+            UnityEditor.EditorUtility.DisplayDialog("Weapon Shop", "Not enough money!!!", "OK");
         }
     }
 
@@ -59,12 +66,8 @@ public class Inventory : MonoBehaviour {
         if (position < weapons.Length - 1)
         {
             position++;
-            
-            WeaponName.text = weapons[position].Name;
-            WeaponPreis.text = weapons[position].Price;
-            SelectedImage.sprite = weapons[position].WeaponSprite;
+            ChangeWeapon();
         }
-
     }
 
     public void LeftDirection()
@@ -72,10 +75,7 @@ public class Inventory : MonoBehaviour {
         if (position > 0)
         {
             position--;
-            SelectedImage.sprite = weapons[position].WeaponSprite;
-            WeaponName.text = weapons[position].Name;
-            WeaponPreis.text = weapons[position].Price;
-
+            ChangeWeapon();
         }
     }
     public void BackToMiniGame()
@@ -86,7 +86,15 @@ public class Inventory : MonoBehaviour {
         }
         SceneBuffer.PlayerMoney = playerMoney;
         SceneBuffer.PlayerPoints = playerPoints;
+        SceneBuffer.PlayerWeapon = CurrentWeapon;
         Application.LoadLevel("Main");
+    }
+
+    private void ChangeWeapon()
+    {
+        SelectedImage.sprite = weapons[position].WeaponSprite;
+        WeaponName.text = "Name: " + weapons[position].Name;
+        WeaponPreis.text = "Price: " + weapons[position].Price + " Coins";
     }
 
 }
