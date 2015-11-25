@@ -16,6 +16,11 @@ public class BonusController : MonoBehaviour {
     {
         playercontroller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerhealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+
+        pointCounter = playercontroller.PlayerPoints;
+        moneyCount = playercontroller.PlayerMoney;
+        MoneyText.text = "Money " + moneyCount.ToString();
+        PointText.text = "Points " + pointCounter.ToString();
     }
     //public int Money { get { return moneyCount; } }
     public void spawnBonus(Vector3 spawnPosition)

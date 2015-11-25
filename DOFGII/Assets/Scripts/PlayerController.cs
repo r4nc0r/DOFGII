@@ -18,12 +18,10 @@ public class PlayerController : MonoBehaviour
     public Image WeaponImage;
 
     private Weapon currentWeapon;
-    private BonusController bonusController;
     void Start()
     {
         // Initialize Game Logic variables:
         playerRigidbody = GetComponent<Rigidbody>();
-        bonusController = GameObject.FindGameObjectWithTag("BonusController").GetComponent<BonusController>();
         currentWeapon = Inventory.CurrentWeapon;
         if (currentWeapon != null)
         {
@@ -77,8 +75,8 @@ public class PlayerController : MonoBehaviour
         {
             // Initialize Shot:
             NextShot = Time.time + fireRate;
-
-            GameObject newShot = Instantiate(shot, shotSpawn.position, shotSpawn.rotation) as GameObject;
+            
+            GameObject newShot = Instantiate(shot, shotSpawn.position, shotSpawn.rotation ) as GameObject;
 
             // Overload Shot values:
             newShot.GetComponent<WeaponBoltMover>().Speed = (float) currentWeapon.ProjectileSpeed;
@@ -86,16 +84,10 @@ public class PlayerController : MonoBehaviour
             newShot.GetComponent<WeaponBoltMover>().Spread = (float)currentWeapon.Spread;
 
             newShot.GetComponent<WeaponBoltMover>().TargetTag = "Enemy";
+
         }
     }
-    /// <summary>
-    /// Collision Detection
-    /// </summary>
-    /// <param name="other"></param>
-    void OnTriggerEnter(Collider other)
-    {
-        
-    }
+
     public int PlayerMoney { get; set; }
     public int PlayerPoints { get; set; }
 }

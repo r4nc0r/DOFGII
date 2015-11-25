@@ -38,23 +38,23 @@ public class BonusItemHandler : MonoBehaviour
 
             Destroy(gameObject);
 
-            if (randomVar >= 00 && randomVar <= 20)
+            if (randomVar >= 0 && randomVar <= 10)
             {
                 //Enemy 1
                 bonusItemIndex = 0;
                 rotation = Quaternion.AngleAxis(180, new Vector3(1, 0, 0));
             }
-            else if(randomVar >= 20 && randomVar <= 40)
+            else if(randomVar >= 10 && randomVar <= 20)
             {
                 //Enemy 2
                 bonusItemIndex = 1;
             }
-            else if (randomVar >= 40  && randomVar <= 60)
+            else if (randomVar >= 30  && randomVar <= 40)
             {
                 //Enemy 3
                 bonusItemIndex = 2;
             }
-            else if (randomVar >= 60 && randomVar <= 85)
+            else if (randomVar >= 40 && randomVar <= 85)
             {
                 //Coin
                 badCount = 1;

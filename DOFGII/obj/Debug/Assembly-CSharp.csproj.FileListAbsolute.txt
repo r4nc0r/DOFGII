@@ -20,3 +20,7 @@ C:\Users\Tobias\OneDrive\GitHub\DOFGII\DOFGII\Temp\bin\Debug\UnityEngine.UI.xml
 C:\Users\Tobias\OneDrive\GitHub\DOFGII\DOFGII\Temp\bin\Debug\UnityEngine.Networking.xml
 C:\Users\Tobias\OneDrive\GitHub\DOFGII\DOFGII\obj\Debug\Assembly-CSharp.dll
 C:\Users\Tobias\OneDrive\GitHub\DOFGII\DOFGII\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Tobias\OneDrive\GitHub\DOFGII\DOFGII\Temp\bin\Debug\UnityEngine.Advertisements.dll
+C:\Users\Tobias\OneDrive\GitHub\DOFGII\DOFGII\Temp\bin\Debug\UnityEngine.Analytics.dll
+C:\Users\Tobias\OneDrive\GitHub\DOFGII\DOFGII\Temp\bin\Debug\UnityEngine.Advertisements.xml
+C:\Users\Tobias\OneDrive\GitHub\DOFGII\DOFGII\Temp\bin\Debug\UnityEngine.Analytics.xml

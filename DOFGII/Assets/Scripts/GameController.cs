@@ -19,31 +19,40 @@ public class GameController : MonoBehaviour {
 	public int Enemy3OriginWidth;
 
 	public GameObject Boundary;
-	public GameObject Player;
 	float distance;
 
+    BonusController bonusController;
     PlayerController playercontroller;
     public GameObject[] EnemyArray;
+    private static int level;
+    private const int levelPoints = 10;
+    public Text LevelText;
 
 	/// <summary>
 	/// Awake this instance.
 	/// </summary>
 	void Awake()
 	{
+        level++;
+        LevelText.text= "Level "+ level.ToString();
         playercontroller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        //distance = 50;//Vector3.Distance (Player.transform.position, Boundary.transform.position);
+        bonusController= GameObject.FindGameObjectWithTag("BonusController").GetComponent<BonusController>();
         distance = Boundary.transform.localScale.x;
+
+        playercontroller.PlayerMoney = SceneBuffer.PlayerMoney;
+        playercontroller.PlayerPoints = SceneBuffer.PlayerPoints;
+        
 	}
 
 	// Use this for initialization
 	void Start () {
-        for (int i = 0; i < Enemy1Count; i++) {
+        for (int i = 0; i < Enemy1Count*level; i++) {
             SpawnEnemy(EnemyArray[0], Enemy1Count, Enemy1OriginBegin,Enemy1OriginWidth);
 		}
-		for (int i = 0; i < Enemy2Count; i++) {
+		for (int i = 0; i < Enemy2Count * level; i++) {
 			SpawnEnemy(EnemyArray[1], Enemy2Count, Enemy2OriginBegin,Enemy2OriginWidth);
 		}
-		for (int i = 0; i < Enemy3Count; i++) {
+		for (int i = 0; i < Enemy3Count * level; i++) {
 			SpawnEnemy(EnemyArray[2], Enemy3Count, Enemy3OriginBegin,Enemy3OriginWidth);
 		}
 	}
@@ -51,8 +60,10 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (playercontroller.PlayerPoints>=15)
+        if (playercontroller.PlayerPoints>=levelPoints*level)
         {
+            SceneBuffer.PlayerMoney = playercontroller.PlayerMoney;
+            SceneBuffer.PlayerPoints = playercontroller.PlayerPoints;
             Application.LoadLevel("Shop");
         }
         if(GameObject.FindGameObjectsWithTag("Enemy").Length<5)

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
 
 public class Inventory : MonoBehaviour {
 
@@ -13,8 +14,10 @@ public class Inventory : MonoBehaviour {
     public Text WeaponName;
     public Text WeaponPreis;
     private int position = 0;
-    
-
+    private GameObject player;
+    private PlayerController pc;
+    private int playerMoney;
+    private int playerPoints;
 
     // Use this for initialization
     void Start()
@@ -24,7 +27,8 @@ public class Inventory : MonoBehaviour {
 
     void Awake()
     {
-     
+        playerMoney = SceneBuffer.PlayerMoney;
+        playerPoints = SceneBuffer.PlayerPoints;
     }
    
     //Update is called once per frame
@@ -34,8 +38,20 @@ public class Inventory : MonoBehaviour {
 
     public void BuyWeapon()
     {
-        CurrentWeapon = weapons[position];
-        BackToMiniGame();
+        int weaponPrice = Convert.ToInt32(weapons[position].Price);
+        if (playerMoney >= weaponPrice)
+        {
+            CurrentWeapon = weapons[position];
+            playerMoney -= weaponPrice;
+            BackToMiniGame();
+        }
+        else
+        {
+            if (UnityEditor.EditorUtility.DisplayDialog("Weapon Shop", "Not enough money!!!", "OK"))
+            {
+            }
+            
+        }
     }
 
     public void RightDirection()
@@ -45,7 +61,7 @@ public class Inventory : MonoBehaviour {
             position++;
             
             WeaponName.text = weapons[position].Name;
-            WeaponPreis.text = weapons[position].Preis;
+            WeaponPreis.text = weapons[position].Price;
             SelectedImage.sprite = weapons[position].WeaponSprite;
         }
 
@@ -58,7 +74,7 @@ public class Inventory : MonoBehaviour {
             position--;
             SelectedImage.sprite = weapons[position].WeaponSprite;
             WeaponName.text = weapons[position].Name;
-            WeaponPreis.text = weapons[position].Preis;
+            WeaponPreis.text = weapons[position].Price;
 
         }
     }
@@ -68,7 +84,8 @@ public class Inventory : MonoBehaviour {
         {
             CurrentWeapon = weapons[0];
         }
-        //GameController.SetCounter(-5);
+        SceneBuffer.PlayerMoney = playerMoney;
+        SceneBuffer.PlayerPoints = playerPoints;
         Application.LoadLevel("Main");
     }
 

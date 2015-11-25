@@ -5,12 +5,11 @@ using UnityEngine.UI;
 public class Weapon
 {
     public string Name;
-    public string Preis;
+    public string Price;
     public Sprite WeaponSprite;
     public double FireRate;
     public double ProjectileSpeed;
     public double Spread;
-
 
 }
 
