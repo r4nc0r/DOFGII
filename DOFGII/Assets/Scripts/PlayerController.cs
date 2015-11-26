@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float straveSpeed;
     public int turnSpeed;
     Rigidbody playerRigidbody;
+    public AudioClip shotAudio;
 
     // Weapon related Variables:
     public GameObject shot;
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour
             NextShot = Time.time + fireRate;
             
             GameObject newShot = Instantiate(shot, shotSpawn.position, shotSpawn.rotation ) as GameObject;
+            AudioSource.PlayClipAtPoint(shotAudio, playerRigidbody.transform.position);
 
             // Overload Shot values:
             newShot.GetComponent<WeaponBoltMover>().Speed = (float) currentWeapon.ProjectileSpeed;

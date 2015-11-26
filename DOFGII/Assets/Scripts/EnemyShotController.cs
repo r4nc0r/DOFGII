@@ -8,6 +8,7 @@ public class EnemyShotController : MonoBehaviour {
     public float ShotSpeed;
     public float ShotSpread;
     public float NextShot;
+    public AudioClip shotEnemy;
 	
     void Start()
     {
@@ -30,6 +31,7 @@ public class EnemyShotController : MonoBehaviour {
         NextShot = Time.time + FireRate;
 
         GameObject newShot = Instantiate(shot, this.transform.position + this.transform.forward, this.transform.rotation) as GameObject;
+        AudioSource.PlayClipAtPoint(shotEnemy, this.transform.position);
 
         // overload Shot values:
         newShot.GetComponent<WeaponBoltMover>().Damage = ShotDamage;
