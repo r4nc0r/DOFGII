@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour {
 	public int Enemy1OriginBegin;
 	public int Enemy1OriginWidth;
 
-	//public GameObject Enemy2;
+	public GameObject Enemy2;
 	public int Enemy2Count;
 	public int Enemy2OriginBegin;
 	public int Enemy2OriginWidth;
@@ -29,21 +29,26 @@ public class GameController : MonoBehaviour {
     private const int levelPoints = 15;
     public Text LevelText;
 
-	/// <summary>
-	/// Awake this instance.
-	/// </summary>
-	void Awake()
-	{
+    public Material[] Skyboxes;
+
+    MaterialPropertyBlock mat;
+    /// <summary>
+    /// Awake this instance.
+    /// </summary>
+    void Awake()
+    {
         level++;
-        LevelText.text= "Level "+ level.ToString();
+        RenderSettings.skybox = Skyboxes[(int)Random.Range(0, 3)];
+
+        LevelText.text = "Level " + level.ToString();
         playercontroller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        bonusController= GameObject.FindGameObjectWithTag("BonusController").GetComponent<BonusController>();
+        bonusController = GameObject.FindGameObjectWithTag("BonusController").GetComponent<BonusController>();
         distance = Boundary.transform.localScale.x;
         player = GameObject.FindGameObjectWithTag("Player");
         playercontroller.PlayerMoney = SceneBuffer.PlayerMoney;
         playercontroller.PlayerPoints = SceneBuffer.PlayerPoints;
-        
-	}
+
+    }
 
 	// Use this for initialization
 	void Start () {
