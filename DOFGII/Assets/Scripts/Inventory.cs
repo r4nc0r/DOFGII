@@ -51,7 +51,7 @@ public class Inventory : MonoBehaviour {
         int weaponPrice = Convert.ToInt32(weapons[position].Price);
         if (playerMoney >= weaponPrice)
         {
-
+            CurrentWeapon = weapons[position];
             playerMoney = (playerMoney - weaponPrice) / factor;
             BackToMiniGame();
         }
