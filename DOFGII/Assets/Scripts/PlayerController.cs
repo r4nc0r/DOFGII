@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     public float straveSpeed;
     public int turnSpeed;
     Rigidbody playerRigidbody;
-    public AudioClip shotAudio;
 
     // Weapon related Variables:
     public GameObject shot;
@@ -17,28 +16,19 @@ public class PlayerController : MonoBehaviour
     public float fireRate;
     public float NextShot;
     public Image WeaponImage;
-
+    public AudioClip shotAudio;
     private Weapon currentWeapon;
+
+    // Highscore and Money:
+    public int PlayerMoney { get; set; }
+    public int PlayerPoints { get; set; }
+
     void Start()
     {
         // Initialize Game Logic variables:
         playerRigidbody = GetComponent<Rigidbody>();
         currentWeapon = SceneBuffer.PlayerWeapon;
-
-        if (currentWeapon != null)
-        {
-            WeaponImage.sprite = currentWeapon.WeaponSprite;
-            shot = currentWeapon.Bolt;
-        }
-        else
-        {
-            currentWeapon = new Weapon();
-            currentWeapon.FireRate = 1;
-            currentWeapon.ProjectileSpeed = 22;
-            currentWeapon.Spread = 0;
-            currentWeapon.Bolt = shot;
-        }
-        fireRate = (float)currentWeapon.FireRate;
+        checkWeapon();
     }
     void Update()
     {
@@ -92,8 +82,25 @@ public class PlayerController : MonoBehaviour
 
         }
     }
-
-    public int PlayerMoney { get; set; }
-    public int PlayerPoints { get; set; }
+    /// <summary>
+    /// Chek if the player has a Weapon if not give player the standard weapon
+    /// </summary>
+    void checkWeapon()
+    {
+        if (currentWeapon != null)
+        {
+            WeaponImage.sprite = currentWeapon.WeaponSprite;
+            shot = currentWeapon.Bolt;
+        }
+        else
+        {
+            currentWeapon = new Weapon();
+            currentWeapon.FireRate = 1;
+            currentWeapon.ProjectileSpeed = 22;
+            currentWeapon.Spread = 0;
+            currentWeapon.Bolt = shot;
+        }
+        fireRate = (float)currentWeapon.FireRate;
+    }
 }
 

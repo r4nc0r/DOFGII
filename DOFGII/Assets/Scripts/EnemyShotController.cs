@@ -2,19 +2,22 @@
 using System.Collections;
 
 public class EnemyShotController : MonoBehaviour {
+    // Game Logic related Variables:
     public GameObject shot;
+    public AudioClip shotEnemy;
+
+    // Balance related Variables:
     public int ShotDamage;
     public float FireRate;
     public float ShotSpeed;
     public float ShotSpread;
     public float NextShot;
-    public AudioClip shotEnemy;
-	
+    	
     void Start()
     {
         NextShot = NextShot + Random.Range(0.0f, 2);
     }
-	// Update is called once per frame
+	
 	void Update ()
     {
 	    if (NextShot <= Time.time)
@@ -23,14 +26,15 @@ public class EnemyShotController : MonoBehaviour {
         }
 	}
     /// <summary>
-    /// Controll weapons
+    /// Controling weapon
     /// </summary>
     void Shoot()
     {
-        // initialize Shot
+        // initialize Shot:
         NextShot = Time.time + FireRate;
 
         GameObject newShot = Instantiate(shot, this.transform.position + this.transform.forward, this.transform.rotation) as GameObject;
+
         AudioSource.PlayClipAtPoint(shotEnemy, this.transform.position);
 
         // overload Shot values:
@@ -41,6 +45,5 @@ public class EnemyShotController : MonoBehaviour {
         newShot.GetComponent<WeaponBoltMover>().Spread = ShotSpread;
 
         newShot.GetComponent<WeaponBoltMover>().TargetTag = "Player";
-
     }
 }

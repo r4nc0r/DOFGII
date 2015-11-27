@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour {
 
     BonusController bonusController;
     public int HighscorePoints;
-	// Use this for initialization
+	  // Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
 
@@ -40,11 +40,6 @@ public class EnemyMovement : MonoBehaviour {
                 this.GetComponent<EnemyShotController>().enabled = true;
             }
         }
-        else
-        {
-
-        }
-
 		nav.SetDestination(player.transform.position);
 	}
 

@@ -31,8 +31,6 @@ public class WeaponBeamController : MonoBehaviour
         LineRender = GetComponent<LineRenderer>();
 
         // add Beam to Hierarchy:
-
-
         Transform Spawnpoint = Shooter.transform.FindChild("ShotSpawn");
 
         this.transform.parent = Spawnpoint;
@@ -58,6 +56,7 @@ public class WeaponBeamController : MonoBehaviour
         {
             hit.collider.GetComponent<PlayerHealth>().TakeDamage(DamagePerSecond);
         }
+
         // Setting positions for next rendering call:
         LineRender.SetPosition(0, transform.position - transform.forward);
         if (hitting)

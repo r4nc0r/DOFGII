@@ -5,15 +5,17 @@ using UnityEngine.UI;
 
 public class WeaponBoltMover : MonoBehaviour
 {
-    public float Speed;
-
-    public float Spread;
+    // Game Logic related Variables:
+    GameObject Player;
 
     public string TargetTag;
 
+    // Balancing related Variables, these will be changed by the Object shooting the bolt:
     public int Damage;
 
-    GameObject Player;
+    public float Speed;
+
+    public float Spread;
 
     void Start()
     {
@@ -25,15 +27,11 @@ public class WeaponBoltMover : MonoBehaviour
         boltSpread.y = 0.0f;
 
         BoltRigidBody.velocity = (transform.forward + boltSpread) * Speed;
-
-        //Damage = 1;
-
-        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // Differentiate hitted Gameobject:
+        // Differentiate whitch Gameobject got hit:
         if (other.gameObject.CompareTag("Enemy") && TargetTag == "Enemy")
         {
             other.GetComponent<EnemyMovement>().DestroyedByPlayer();
@@ -42,7 +40,7 @@ public class WeaponBoltMover : MonoBehaviour
         }
         else if (other.CompareTag("Player") && TargetTag == "Player")
         {
-            Player.GetComponent<PlayerHealth>().TakeDamage(Damage);
+            other.GetComponent<PlayerHealth>().TakeDamage(Damage);
 
             Destroy(this.gameObject);
         }
