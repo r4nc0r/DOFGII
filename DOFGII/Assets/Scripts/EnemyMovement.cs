@@ -15,7 +15,7 @@ public class EnemyMovement : MonoBehaviour {
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
 
-        bonusController = GameObject.FindGameObjectWithTag("BonusController").GetComponent<BonusController>();
+        bonusController = GameObject.FindGameObjectWithTag("GameController").GetComponent<BonusController>();
 
         Debug.Log (player);
 

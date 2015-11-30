@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         movePlayer();
     }
+
     /// <summary>
     /// Gets Movement Input Values for Player and Controlls Movement
     /// </summary>
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
         Vector3 Strave = this.gameObject.transform.right * moveStrave * straveSpeed;
 
         Vector3 Forward = this.gameObject.transform.forward * moveForward * forwardSpeed;
+
 
         playerRigidbody.velocity = Strave + Forward;
     }
@@ -82,6 +84,7 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
     /// <summary>
     /// Chek if the player has a Weapon if not give player the standard weapon
     /// </summary>

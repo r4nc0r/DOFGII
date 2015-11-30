@@ -7,7 +7,7 @@ public class GoldCoinHandler : MonoBehaviour {
 
     void Awake()
     {
-        bonusController = GameObject.FindGameObjectWithTag("BonusController").GetComponent<BonusController>();
+        bonusController = GameObject.FindGameObjectWithTag("GameController").GetComponent<BonusController>();
     }
     void Update()
     {
