@@ -39,6 +39,7 @@ public class EnemyController : MonoBehaviour {
     /// </summary>
     void Awake()
     {
+        
         level++;
         RenderSettings.skybox = Skyboxes[(int)Random.Range(0, 3)];
 
@@ -48,7 +49,6 @@ public class EnemyController : MonoBehaviour {
         distance = GameObject.FindGameObjectWithTag("Boundary").GetComponent<SphereCollider>().radius;
         playerController.PlayerMoney = SceneBuffer.PlayerMoney;
         playerController.PlayerPoints = SceneBuffer.PlayerPoints;
-
     }
 
 	// Use this for initialization

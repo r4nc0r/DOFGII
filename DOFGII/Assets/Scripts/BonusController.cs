@@ -19,8 +19,8 @@ public class BonusController : MonoBehaviour {
 
         pointCounter = playercontroller.PlayerPoints;
         moneyCount = playercontroller.PlayerMoney;
-        MoneyText.text = "Money " + moneyCount.ToString();
-        PointText.text = "Points " + pointCounter.ToString();
+        MoneyText.text = moneyCount.ToString();
+        PointText.text = pointCounter.ToString();
     }
     //public int Money { get { return moneyCount; } }
     public void spawnBonus(Vector3 spawnPosition)
@@ -33,13 +33,13 @@ public class BonusController : MonoBehaviour {
     public void showPoints()
     {
         pointCounter++;
-        PointText.text = "Points " + pointCounter.ToString();
+        PointText.text = pointCounter.ToString();
         playercontroller.PlayerPoints = pointCounter;
     }
     public void showMoney()
     {
         moneyCount++;
-        MoneyText.text = "Money " + moneyCount.ToString();
+        MoneyText.text = moneyCount.ToString();
         playercontroller.PlayerMoney = moneyCount;
     }
     public void addHealth(int healing)

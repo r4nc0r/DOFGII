@@ -5,8 +5,11 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     // Movement related Variables
+    [Range(1, 50)]
     public float forwardSpeed;
+    [Range(1, 50)]
     public float straveSpeed;
+    [Range(.1f, 10)]
     public int turnSpeed;
     Rigidbody playerRigidbody;
 

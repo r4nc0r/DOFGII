@@ -5,6 +5,7 @@ public class EnemyMovement : MonoBehaviour {
 	NavMeshAgent nav;
 	GameObject player;
 	GameObject enemy;
+    public GameObject Explosion;
 
 	float distance;
 	public int shootDistance = 100;
@@ -47,9 +48,8 @@ public class EnemyMovement : MonoBehaviour {
     {
 
         bonusController.showPoints();
-
         bonusController.spawnBonus(this.transform.position);
-
+        Instantiate(Explosion, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
         Destroy(this.gameObject);
     }
 }

@@ -9,12 +9,9 @@ public class EnemyCollision : MonoBehaviour
     GameObject Player;
     PlayerHealth playerHealth;
     private bool playerInRange;
+    public GameObject Explosion;
     
 
-    void Start()
-    {
-    
-    }
     void Awake()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -35,6 +32,7 @@ public class EnemyCollision : MonoBehaviour
         {
             playerHealth.TakeDamage(attackDamage);
             Destroy(this.gameObject);
+            Instantiate(Explosion, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
         }
     }
 }
