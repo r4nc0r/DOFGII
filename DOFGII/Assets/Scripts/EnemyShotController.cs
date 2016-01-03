@@ -15,7 +15,7 @@ public class EnemyShotController : MonoBehaviour {
     	
     void Start()
     {
-        NextShot = NextShot + Random.Range(0.0f, 2);
+        NextShot = Time.time + Random.Range(0.0f, 2);
     }
 	
 	void Update ()

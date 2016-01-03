@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // Initialize Game Logic variables:
+        Cursor.visible = false;
         playerRigidbody = GetComponent<Rigidbody>();
         currentWeapon = SceneBuffer.PlayerWeapon;
         checkWeapon();
