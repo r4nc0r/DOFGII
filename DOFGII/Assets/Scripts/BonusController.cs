@@ -4,21 +4,22 @@ using System.Collections;
 
 public class BonusController : MonoBehaviour {
 
-    private PlayerController playercontroller;
-    private PlayerHealth playerhealth;
+    private PlayerController playerController;
+    private PlayerHealth playerHealth;
     public GameObject BonusItem;
-    private int pointCounter = 0;
     public Text PointText;
     private int moneyCount = 0;
     public Text MoneyText;
 
+    static public int pointCounter { get; set; }
+
     public void Start()
     {
-        playercontroller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        playerhealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
 
-        pointCounter = playercontroller.PlayerPoints;
-        moneyCount = playercontroller.PlayerMoney;
+        pointCounter = playerController.PlayerPoints;
+        moneyCount = playerController.PlayerMoney;
         MoneyText.text = moneyCount.ToString();
         PointText.text = pointCounter.ToString();
     }
@@ -34,16 +35,16 @@ public class BonusController : MonoBehaviour {
     {
         pointCounter++;
         PointText.text = pointCounter.ToString();
-        playercontroller.PlayerPoints = pointCounter;
+        playerController.PlayerPoints = pointCounter;
     }
     public void showMoney()
     {
         moneyCount++;
         MoneyText.text = moneyCount.ToString();
-        playercontroller.PlayerMoney = moneyCount;
+        playerController.PlayerMoney = moneyCount;
     }
     public void addHealth(int healing)
     {
-        playerhealth.GetHealing(500);
+        playerHealth.GetHealing(500);
     }
 }

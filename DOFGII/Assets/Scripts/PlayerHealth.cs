@@ -9,6 +9,8 @@ public class PlayerHealth : MonoBehaviour
     public Slider HealthSlider;
     public Text HealthText;
     GameObject Player;
+    public GameObject LooseText;
+    public Text LoosePoints;
 
     void Awake()
     {
@@ -23,8 +25,11 @@ public class PlayerHealth : MonoBehaviour
 
         if (CurrentHealth <= 0)
         {
-            CurrentHealth =0;
+            CurrentHealth = 0;
             Player.SetActive(false);
+
+            LoosePoints.text = "Points: "+BonusController.pointCounter.ToString();
+            LooseText.SetActive(true);
         }
 
         HealthText.text = CurrentHealth.ToString() + " / " + StartingHealth.ToString();

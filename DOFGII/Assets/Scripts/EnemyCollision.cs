@@ -31,8 +31,10 @@ public class EnemyCollision : MonoBehaviour
         if (playerHealth.CurrentHealth > 0)
         {
             playerHealth.TakeDamage(attackDamage);
+            Color color = new Color(this.GetComponentInChildren<Renderer>().material.GetColor("_Color").r, this.GetComponentInChildren<Renderer>().material.GetColor("_Color").g, this.GetComponentInChildren<Renderer>().material.GetColor("_Color").b, 0.5f);
             Destroy(this.gameObject);
-            Instantiate(Explosion, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            GameObject explosion = (GameObject)Instantiate(Explosion, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            explosion.GetComponent<ParticleSystem>().startColor = color;
         }
     }
 }

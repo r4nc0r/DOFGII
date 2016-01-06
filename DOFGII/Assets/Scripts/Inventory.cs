@@ -23,6 +23,7 @@ public class Inventory : MonoBehaviour {
 
     void Awake()
     {
+        Cursor.visible = true;
         playerMoney = SceneBuffer.PlayerMoney*factor;
         playerPoints = SceneBuffer.PlayerPoints;
 
@@ -68,6 +69,11 @@ public class Inventory : MonoBehaviour {
             position++;
             ChangeWeapon();
         }
+        else
+        {
+            position = 0;
+            ChangeWeapon();
+        }
     }
 
     public void LeftDirection()
@@ -75,6 +81,11 @@ public class Inventory : MonoBehaviour {
         if (position > 0)
         {
             position--;
+            ChangeWeapon();
+        }
+        else
+        {
+            position = weapons.Length - 1;
             ChangeWeapon();
         }
     }
@@ -93,8 +104,8 @@ public class Inventory : MonoBehaviour {
     private void ChangeWeapon()
     {
         SelectedImage.sprite = weapons[position].WeaponSprite;
-        WeaponName.text = "Name: " + weapons[position].Name;
-        WeaponPreis.text = "Price: " + weapons[position].Price + " Coins";
+        WeaponName.text = weapons[position].Name +": ";
+        WeaponPreis.text = weapons[position].Price + " Coins";
     }
 
 }

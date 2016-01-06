@@ -25,8 +25,7 @@ public class BonusItemHandler : MonoBehaviour
     {
         if (other.tag == "Bolt" || other.tag == player.tag)
         {
-            //Bolt have to be destroyed otherwise bolt collider destroys the spawned 
-            //enemy objects
+            //Bolt has to be destroyed otherwise bolt collider destroys the spawned enemy objects
             if (other.tag == "Bolt")
                 Destroy(other);
 

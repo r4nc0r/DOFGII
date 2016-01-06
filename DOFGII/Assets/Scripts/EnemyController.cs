@@ -27,10 +27,8 @@ public class EnemyController : MonoBehaviour {
     public GameObject[] EnemyArray;
 
     private static int level;
-    private const int levelPoints = 15;
-    public Text LevelText;
-
-    public Material[] Skyboxes;
+    
+    public const int LevelPoints = 50;
 
     MaterialPropertyBlock mat;
 
@@ -40,10 +38,7 @@ public class EnemyController : MonoBehaviour {
     void Awake()
     {
         
-        level++;
-        RenderSettings.skybox = Skyboxes[(int)Random.Range(0, 3)];
-
-        LevelText.text = "Level " + level.ToString();
+        level = StartEndController.level;
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         bonusController = GameObject.FindGameObjectWithTag("GameController").GetComponent<BonusController>();
         distance = GameObject.FindGameObjectWithTag("Boundary").GetComponent<SphereCollider>().radius;
@@ -51,8 +46,8 @@ public class EnemyController : MonoBehaviour {
         playerController.PlayerPoints = SceneBuffer.PlayerPoints;
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         for (int i = 0; i < Enemy1Count*level; i++) {
             SpawnEnemy(EnemyArray[0], Enemy1OriginBegin,Enemy1OriginWidth);
 		}
@@ -67,14 +62,14 @@ public class EnemyController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {        
-        if (playerController.PlayerPoints>=levelPoints*level)
+        if (playerController.PlayerPoints >= LevelPoints * level)
         {
             SceneBuffer.PlayerMoney = playerController.PlayerMoney;
             SceneBuffer.PlayerPoints = playerController.PlayerPoints;
             Application.LoadLevel("Shop");
         }
         //Wenn weniger als angegeben dann wird ein Random Enemy auf der Boundary um den Spieler erstellt
-        if(GameObject.FindGameObjectsWithTag("Enemy").Length<5)
+        if(GameObject.FindGameObjectsWithTag("Enemy").Length < 5)
         {
             int randomEnemy = Random.Range(0, 3);
             switch (randomEnemy)

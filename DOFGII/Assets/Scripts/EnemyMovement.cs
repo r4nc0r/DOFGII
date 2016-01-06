@@ -15,13 +15,8 @@ public class EnemyMovement : MonoBehaviour {
 	  // Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
-
         bonusController = GameObject.FindGameObjectWithTag("GameController").GetComponent<BonusController>();
-
-        Debug.Log (player);
-
 		enemy = this.gameObject;
-
 		nav = GetComponent<NavMeshAgent> ();
 	}
 	
@@ -46,10 +41,11 @@ public class EnemyMovement : MonoBehaviour {
 
     public void DestroyedByPlayer()
     {
-
         bonusController.showPoints();
         bonusController.spawnBonus(this.transform.position);
-        Instantiate(Explosion, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+        Color color = new Color(this.GetComponentInChildren<Renderer>().material.GetColor("_Color").r, this.GetComponentInChildren<Renderer>().material.GetColor("_Color").g, this.GetComponentInChildren<Renderer>().material.GetColor("_Color").b, 0.5f);
         Destroy(this.gameObject);
+        GameObject explosion = (GameObject)Instantiate(Explosion, this.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+        explosion.GetComponent<ParticleSystem>().startColor = color;
     }
 }

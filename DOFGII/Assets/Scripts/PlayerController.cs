@@ -50,18 +50,13 @@ public class PlayerController : MonoBehaviour
     {
         // Get input Values:
         float moveForward = Input.GetAxis("Vertical");
-
         float moveStrave = Input.GetAxis("Horizontal");
-
         float turning = Input.GetAxis("Turning");
 
         // Move Playerobject:
         transform.RotateAround(transform.position, new Vector3(0, 1, 0), turning * turnSpeed);
-
         Vector3 Strave = this.gameObject.transform.right * moveStrave * straveSpeed;
-
         Vector3 Forward = this.gameObject.transform.forward * moveForward * forwardSpeed;
-
 
         playerRigidbody.velocity = Strave + Forward;
     }
@@ -81,9 +76,7 @@ public class PlayerController : MonoBehaviour
 
             // Overload Shot values:
             newShot.GetComponent<WeaponBoltMover>().Speed = (float) currentWeapon.ProjectileSpeed;
-
             newShot.GetComponent<WeaponBoltMover>().Spread = (float)currentWeapon.Spread;
-
             newShot.GetComponent<WeaponBoltMover>().TargetTag = "Enemy";
 
         }
