@@ -22,8 +22,9 @@ public class BonusController : MonoBehaviour {
         moneyCount = playerController.PlayerMoney;
         MoneyText.text = moneyCount.ToString();
         PointText.text = pointCounter.ToString();
+
+       
     }
-    //public int Money { get { return moneyCount; } }
     public void spawnBonus(Vector3 spawnPosition)
     {
         if ((int)Random.Range(0, 100) % 2 == 0)
@@ -31,10 +32,10 @@ public class BonusController : MonoBehaviour {
             Instantiate(BonusItem, spawnPosition + new Vector3(0, 1, 0), Quaternion.identity);
         }
     }
-    public void showPoints()
+    public  void showPoints()
     {
-        pointCounter++;
-        PointText.text = pointCounter.ToString();
+        
+        PointText.text = pointCounter.ToString() + "/" + EnemyController.lvlPoints[StartEndController.level-1].ToString();
         playerController.PlayerPoints = pointCounter;
     }
     public void showMoney()

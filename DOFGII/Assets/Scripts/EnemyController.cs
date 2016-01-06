@@ -26,9 +26,9 @@ public class EnemyController : MonoBehaviour {
     PlayerController playerController;
     public GameObject[] EnemyArray;
 
-    private static int level;
-    
-    public const int LevelPoints = 50;
+    private int level;
+    public static int[] lvlPoints = new int[100];
+    public const int LevelPoints = 30 ;
 
     MaterialPropertyBlock mat;
 
@@ -37,8 +37,6 @@ public class EnemyController : MonoBehaviour {
     /// </summary>
     void Awake()
     {
-        
-        level = StartEndController.level;
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         bonusController = GameObject.FindGameObjectWithTag("GameController").GetComponent<BonusController>();
         distance = GameObject.FindGameObjectWithTag("Boundary").GetComponent<SphereCollider>().radius;
@@ -47,7 +45,16 @@ public class EnemyController : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        level = StartEndController.level;
+
+        lvlPoints[0] = LevelPoints;
+        for(int i=1;i<100;i++)
+        {
+            lvlPoints[i] = lvlPoints[i - 1] + level * LevelPoints;
+        }
+        bonusController.showPoints();
         for (int i = 0; i < Enemy1Count*level; i++) {
             SpawnEnemy(EnemyArray[0], Enemy1OriginBegin,Enemy1OriginWidth);
 		}
@@ -57,15 +64,16 @@ public class EnemyController : MonoBehaviour {
 		for (int i = 0; i < Enemy3Count * level; i++) {
 			SpawnEnemy(EnemyArray[2], Enemy3OriginBegin,Enemy3OriginWidth);
 		}
-	}
+    }
 
 	// Update is called once per frame
 	void Update ()
     {        
-        if (playerController.PlayerPoints >= LevelPoints * level)
+        if (playerController.PlayerPoints >= lvlPoints[level-1])
         {
             SceneBuffer.PlayerMoney = playerController.PlayerMoney;
             SceneBuffer.PlayerPoints = playerController.PlayerPoints;
+            
             Application.LoadLevel("Shop");
         }
         //Wenn weniger als angegeben dann wird ein Random Enemy auf der Boundary um den Spieler erstellt

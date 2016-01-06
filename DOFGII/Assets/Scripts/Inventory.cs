@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour {
 
         if (SceneBuffer.PlayerWeapon == null)
         {
-            CurrentWeapon = weapons[0];
+            CurrentWeapon = weapons[1];
         }
         else
         {
@@ -42,11 +42,9 @@ public class Inventory : MonoBehaviour {
 
     }
    
-    //Update is called once per frame
-    void Update()
-    {
-    }
-
+    /// <summary>
+    /// 
+    /// </summary>
     public void BuyWeapon()
     {
         int weaponPrice = Convert.ToInt32(weapons[position].Price);
@@ -93,7 +91,7 @@ public class Inventory : MonoBehaviour {
     {
         if (CurrentWeapon == null)
         {
-            CurrentWeapon = weapons[0];
+            CurrentWeapon = weapons[1];
         }
         SceneBuffer.PlayerMoney = playerMoney;
         SceneBuffer.PlayerPoints = playerPoints;

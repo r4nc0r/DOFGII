@@ -95,9 +95,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             currentWeapon = new Weapon();
-            currentWeapon.FireRate = 1;
-            currentWeapon.ProjectileSpeed = 22;
-            currentWeapon.Spread = 0;
+            currentWeapon.FireRate = 0.5;
+            currentWeapon.ProjectileSpeed = 25;
+            currentWeapon.Spread = 0.05;
             currentWeapon.Bolt = shot;
         }
         fireRate = (float)currentWeapon.FireRate;

@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
 
             LoosePoints.text = "Points: "+BonusController.pointCounter.ToString();
             LooseText.SetActive(true);
+            Cursor.visible = true;  
         }
 
         HealthText.text = CurrentHealth.ToString() + " / " + StartingHealth.ToString();

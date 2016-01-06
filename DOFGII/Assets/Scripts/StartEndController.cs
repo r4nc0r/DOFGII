@@ -5,7 +5,7 @@ using System.Collections;
 public class StartEndController : MonoBehaviour {
 
 
-    public static int level;
+    public static int level=0;
     public Material[] Skyboxes;
     public Text LevelText;
 

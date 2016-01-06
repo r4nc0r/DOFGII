@@ -41,6 +41,7 @@ public class EnemyMovement : MonoBehaviour {
 
     public void DestroyedByPlayer()
     {
+        BonusController.pointCounter++;
         bonusController.showPoints();
         bonusController.spawnBonus(this.transform.position);
         Color color = new Color(this.GetComponentInChildren<Renderer>().material.GetColor("_Color").r, this.GetComponentInChildren<Renderer>().material.GetColor("_Color").g, this.GetComponentInChildren<Renderer>().material.GetColor("_Color").b, 0.5f);
