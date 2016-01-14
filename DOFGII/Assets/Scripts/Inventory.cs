@@ -19,8 +19,12 @@ public class Inventory : MonoBehaviour {
     private int playerMoney;
     private int playerPoints;
     private const int factor = 2;
-    private Weapon CurrentWeapon;
+    private Weapon currentWeapon;
 
+    /// <summary>
+    /// Setze CurrentWeapon auf aktuelle verwendete Klasse.
+    /// Lese Infos zu Währung und Punktestand aus
+    /// </summary>
     void Awake()
     {
         Cursor.visible = true;
@@ -29,28 +33,28 @@ public class Inventory : MonoBehaviour {
 
         if (SceneBuffer.PlayerWeapon == null)
         {
-            CurrentWeapon = weapons[1];
+            currentWeapon = weapons[1];
         }
         else
         {
-            CurrentWeapon = SceneBuffer.PlayerWeapon;
+            currentWeapon = SceneBuffer.PlayerWeapon;
         }
         
-        PlayerCurrentWeaponImage.sprite = CurrentWeapon.WeaponSprite;
+        PlayerCurrentWeaponImage.sprite = currentWeapon.WeaponSprite;
         PlayerMoney.text = "Money: " + playerMoney;
         PlayerPoints.text = "Points: " + playerPoints;
 
     }
    
     /// <summary>
-    /// 
+    /// Prüft ob genügend Währung vorhanden um sich eine neue Waffe kaufen zukönnen
     /// </summary>
     public void BuyWeapon()
     {
         int weaponPrice = Convert.ToInt32(weapons[position].Price);
         if (playerMoney >= weaponPrice)
         {
-            CurrentWeapon = weapons[position];
+            currentWeapon = weapons[position];
             playerMoney = (playerMoney - weaponPrice) / factor;
             BackToMiniGame();
         }
@@ -60,6 +64,9 @@ public class Inventory : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Zeigt nächstes WaffenImage und dessen Infos (rechts klichen)
+    /// </summary>
     public void RightDirection()
     {
         if (position < weapons.Length - 1)
@@ -74,6 +81,9 @@ public class Inventory : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Zeigt nächstes WaffenImage an und dessen Infos (links klicken)
+    /// </summary>
     public void LeftDirection()
     {
         if (position > 0)
@@ -87,18 +97,25 @@ public class Inventory : MonoBehaviour {
             ChangeWeapon();
         }
     }
+
+    /// <summary>
+    /// Zurück zur Hauptszene 
+    /// </summary>
     public void BackToMiniGame()
     {
-        if (CurrentWeapon == null)
+        if (currentWeapon == null)
         {
-            CurrentWeapon = weapons[1];
+            currentWeapon = weapons[1];
         }
         SceneBuffer.PlayerMoney = playerMoney;
         SceneBuffer.PlayerPoints = playerPoints;
-        SceneBuffer.PlayerWeapon = CurrentWeapon;
+        SceneBuffer.PlayerWeapon = currentWeapon;
         Application.LoadLevel("Main");
     }
 
+    /// <summary>
+    /// Setzt WaffenInfos des nächsten WaffenImage
+    /// </summary>
     private void ChangeWeapon()
     {
         SelectedImage.sprite = weapons[position].WeaponSprite;
