@@ -21,6 +21,8 @@ public class Inventory : MonoBehaviour {
     private const int factor = 2;
     private Weapon currentWeapon;
 
+    public RectTransform ErrorMesage;
+
     /// <summary>
     /// Setze CurrentWeapon auf aktuelle verwendete Klasse.
     /// Lese Infos zu Währung und Punktestand aus
@@ -60,7 +62,7 @@ public class Inventory : MonoBehaviour {
         }
         else
         {
-            UnityEditor.EditorUtility.DisplayDialog("Weapon Shop", "Not enough money!!!", "OK");
+            ErrorMesage.gameObject.SetActive(true);
         }
     }
 
